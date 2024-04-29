@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import {
+  discordLogo,
   feat1,
   feat2,
   feat3,
@@ -7,7 +8,10 @@ import {
   lifetimePassImg,
   logo,
   monthlyPassImg,
+  xLogo,
 } from '@/utils/images'
+
+import { LINKS } from '@/utils/links'
 
 export default function Home() {
   const navItems = [
@@ -55,6 +59,19 @@ export default function Home() {
     {
       image: feat3,
       title: 'Auto Pilot transactions',
+    },
+  ]
+
+  const socialMidias = [
+    {
+      title: 'X',
+      href: LINKS.X,
+      image: xLogo,
+    },
+    {
+      title: 'Discord',
+      href: LINKS.DISCORD,
+      image: discordLogo,
     },
   ]
 
@@ -169,7 +186,10 @@ export default function Home() {
           <ul className="z-20 mt-14 flex items-center gap-x-8">
             {features.map(({ image, title }) => {
               return (
-                <li key={title}>
+                <li
+                  key={title}
+                  className="transition-transform duration-300 hover:scale-105"
+                >
                   <div className="flex flex-col items-center rounded-[10px] border border-white/20 bg-white/10 p-1 pb-8">
                     <img src={image} alt={`${title} NFT image`} />
                     <span className="mt-8 text-[1.25rem] font-semibold">
@@ -186,18 +206,61 @@ export default function Home() {
 
       <div className="mt-32 h-px w-full bg-white/20" />
 
-      <footer className="bg-footer flex h-[570px] w-full flex-col items-center bg-cover bg-center bg-no-repeat">
-        {/* <img src={footer} alt="Footer background" /> */}
+      <footer className="flex h-[570px] w-full flex-col items-center bg-footer bg-cover bg-center bg-no-repeat">
         <div className="flex h-full w-full flex-col items-center justify-center">
-          <div>
+          <div className="flex h-full w-full max-w-[1366px] items-center justify-between ">
+            <div className="flex max-w-[400px] flex-col items-start gap-y-6">
+              <p>
+                Ultrices eget pretium sit euismod mi id posuere ac in in nisl
+                sed augue. Posuere ac in in nisl sed augue.
+              </p>
+              <ul className="flex flex-nowrap items-center gap-4">
+                {socialMidias.map(({ href, image, title }) => {
+                  return (
+                    <li key={title}>
+                      <Link to={href} target="_blank">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-full border border-blue500/40 bg-blue500/10 transition-colors duration-300 hover:bg-blue500/40">
+                          <img
+                            width={20}
+                            height={20}
+                            src={image}
+                            alt={`${title} logo`}
+                          />
+                        </div>
+                      </Link>
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
+
+            <div className="flex flex-col gap-3">
+              <h4 className="text-[1.375rem] font-bold leading-none">
+                Resources
+              </h4>
+              <ul className="flex flex-col gap-2 text-base">
+                <li className=" hover:text-blue500">
+                  <Link to="#nfts">Get access</Link>
+                </li>
+                <li className=" hover:text-blue500">
+                  <Link to="#features">Features</Link>
+                </li>
+                <li className=" hover:text-blue500">
+                  <Link to="https://discord.gg/svnfZCgP" target="_blank">
+                    Discord
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="mt-auto flex w-full flex-col items-center gap-6 pb-12">
+            <div className="mt-32 h-px w-full bg-white/20" />
+
             <p>
-              Ultrices eget pretium sit euismod mi id posuere ac in in nisl sed
-              augue. Posuere ac in in nisl sed augue.
+              © 2024 Copyright <b>Sanji</b>. All rights reserved
             </p>
           </div>
-          <p>
-            © 2024 Copyright <b>Sanji</b>. All rights reserved
-          </p>
         </div>
       </footer>
     </div>
